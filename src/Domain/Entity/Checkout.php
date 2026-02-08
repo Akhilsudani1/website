@@ -5,27 +5,15 @@ namespace App\Domain\Entity;
 
 class Checkout
 {
-    private string $id;
-    private string $assetId;
-    private string $userId;
-    private string $checkoutDate;
-    private ?string $returnDate;
-
     public function __construct(
-        string $id,
-        string $assetId,
-        string $userId,
-        string $checkoutDate
-    ) {
-        $this->id = $id;
-        $this->assetId = $assetId;
-        $this->userId = $userId;
-        $this->checkoutDate = $checkoutDate;
-        $this->returnDate = null;
-    }
+        private string $id,
+        private string $assetId,
+        private string $userId,
+        private string $checkoutDate
+    ) {}
 
-    public function completeReturn(string $date): void
-    {
-        $this->returnDate = $date;
-    }
+    public function getId(): string { return $this->id; }
+    public function getAssetId(): string { return $this->assetId; }
+    public function getUserId(): string { return $this->userId; }
+    public function getCheckoutDate(): string { return $this->checkoutDate; }
 }

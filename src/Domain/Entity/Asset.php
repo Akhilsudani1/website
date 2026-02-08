@@ -5,35 +5,40 @@ namespace App\Domain\Entity;
 
 class Asset
 {
-    private string $id;
-    private string $name;
-    private string $category;
-    private string $status;
-
     public function __construct(
-        string $id,
-        string $name,
-        string $category,
-        string $status = 'available'
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->category = $category;
-        $this->status = $status;
+        private string $id,
+        private string $name,
+        private string $category,
+        private string $status = 'available'
+    ) {}
+
+    public function getId(): string { return $this->id; }
+    public function getName(): string { return $this->name; }
+    public function getCategory(): string { return $this->category; }
+    public function getStatus(): string { return $this->status; }
+
+    public function isAvailable(): bool
+    {
+        return $this->status === 'available';
     }
 
-    public function getId(): string
+    public function markCheckedOut(): void
     {
-        return $this->id;
+        $this->status = 'checked_out';
+    }
+
+    public function markAvailable(): void
+    {
+        $this->status = 'available';
     }
 
     public function toArray(): array
     {
         return [
-            'id'       => $this->id,
-            'name'     => $this->name,
+            'id' => $this->id,
+            'name' => $this->name,
             'category' => $this->category,
-            'status'   => $this->status,
+            'status' => $this->status
         ];
     }
 }
