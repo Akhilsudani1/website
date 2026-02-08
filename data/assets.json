@@ -4,5 +4,17 @@
         "name": "Laptop",
         "category": "IT",
         "status": "available"
+    },
+    {
+        "id": "asset_69886ca0a182a",
+        "name": "CPU",
+        "category": "IT",
+        "status": "available"
+    },
+    {
+        "id": "asset_69886ebe4fe0b",
+        "name": "MOUSE",
+        "category": "IT",
+        "status": "available"
     }
 ]

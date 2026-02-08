@@ -12,19 +12,20 @@ class CheckoutService
 {
     public function __construct(
         private AssetRepositoryInterface $assetRepo,
-        private CheckoutRepositoryInterface $checkoutRepo
+        private CheckoutRepositoryInterface $checkoutRepo,
+        private AuthService $auth
     ) {}
 
-    public function checkout(string $assetId, string $userId): void
+    public function checkout(string $assetId): void
     {
+        $this->auth->requireLogin();
+
+        $userId = $_SESSION['user']['id'];
+
         $asset = $this->assetRepo->findById($assetId);
 
         if (!$asset || !$asset->isAvailable()) {
             throw new Exception('Asset not available');
-        }
-
-        if ($this->checkoutRepo->findActiveByAssetId($assetId)) {
-            throw new Exception('Already checked out');
         }
 
         $asset->markCheckedOut();
@@ -37,11 +38,10 @@ class CheckoutService
 
     public function returnAsset(string $assetId): void
     {
-        $checkout = $this->checkoutRepo->findActiveByAssetId($assetId);
+        $this->auth->requireLogin();
 
-        if (!$checkout) {
-            throw new Exception('No active checkout');
-        }
+        $checkout = $this->checkoutRepo->findActiveByAssetId($assetId);
+        if (!$checkout) throw new Exception('No active checkout');
 
         $asset = $this->assetRepo->findById($assetId);
         $asset->markAvailable();
@@ -52,6 +52,7 @@ class CheckoutService
 
     public function history(): array
     {
+        $this->auth->requireLogin();
         return $this->checkoutRepo->findAll();
     }
 }

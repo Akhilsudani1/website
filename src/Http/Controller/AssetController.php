@@ -11,17 +11,21 @@ class AssetController
 
     public function index(): void
     {
-        echo "
-        <h2>Create Asset</h2>
-        <form method='POST' action='/'>
-            <input name='name' placeholder='Name' required>
-            <input name='category' placeholder='Category' required>
-            <button>Create</button>
-        </form>
-        <hr>
-        <a href='/history'>View History</a>
-        <hr>
-        ";
+        $user = $_SESSION['user'] ?? null;
+
+        if ($user && $user['role'] === 'admin') {
+            echo "
+            <h2>Create Asset</h2>
+            <form method='POST' action='/'>
+                <input name='name' placeholder='Name' required>
+                <input name='category' placeholder='Category' required>
+                <button>Create</button>
+            </form>
+            <hr>
+            ";
+        }
+
+        echo "<a href='/history'>View History</a> | <a href='/logout'>Logout</a><hr>";
 
         foreach ($this->service->list() as $asset) {
             echo "{$asset->getName()} ({$asset->getStatus()}) ";
