@@ -3,23 +3,38 @@ declare(strict_types=1);
 
 namespace App\Storage\File;
 
-use App\Storage\AssetRepositoryInterface;
 use App\Domain\Entity\Asset;
+use App\Storage\AssetRepositoryInterface;
 
 class FileAssetRepository implements AssetRepositoryInterface
 {
-    public function findAll(): array
+    private string $file;
+
+    public function __construct(string $file)
     {
-        return [];
+        $this->file = $file;
     }
 
-    public function findById(string $id): ?Asset
+    public function findAll(): array
     {
-        return null;
+        $data = json_decode(file_get_contents($this->file), true) ?? [];
+
+        return array_map(
+            fn ($item) => new Asset(
+                $item['id'],
+                $item['name'],
+                $item['category'],
+                $item['status']
+            ),
+            $data
+        );
     }
 
     public function save(Asset $asset): void
     {
-        // save to JSON
+        $assets = json_decode(file_get_contents($this->file), true) ?? [];
+        $assets[] = $asset->toArray();
+
+        file_put_contents($this->file, json_encode($assets, JSON_PRETTY_PRINT));
     }
 }

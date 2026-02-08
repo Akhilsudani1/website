@@ -10,26 +10,30 @@ class Asset
     private string $category;
     private string $status;
 
-    public function __construct(string $id, string $name, string $category, string $status = 'available')
-    {
+    public function __construct(
+        string $id,
+        string $name,
+        string $category,
+        string $status = 'available'
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->category = $category;
         $this->status = $status;
     }
 
-    public function getStatus(): string
+    public function getId(): string
     {
-        return $this->status;
+        return $this->id;
     }
 
-    public function markCheckedOut(): void
+    public function toArray(): array
     {
-        $this->status = 'checked_out';
-    }
-
-    public function markAvailable(): void
-    {
-        $this->status = 'available';
+        return [
+            'id'       => $this->id,
+            'name'     => $this->name,
+            'category' => $this->category,
+            'status'   => $this->status,
+        ];
     }
 }
