@@ -5,6 +5,7 @@ namespace App\Http\Controller;
 
 use App\Domain\Service\AssetService;
 use App\Domain\DTO\CreateAssetDTO;
+use App\Domain\Validation\Validator;
 
 class AssetController
 {
@@ -50,6 +51,10 @@ class AssetController
     }
     public function create(): void
     {
+        
+    Validator::required($_POST['name'], 'Asset name');
+    Validator::required($_POST['category'], 'Category');
+
     $dto = new CreateAssetDTO(
         $_POST['name'],
         $_POST['category']

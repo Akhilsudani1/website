@@ -5,6 +5,7 @@ namespace App\Http\Controller;
 
 use App\Domain\Service\CheckoutService;
 use App\Domain\DTO\CheckoutAssetDTO;
+use App\Domain\Validation\Validator;
 
 class CheckoutController
 {
@@ -12,11 +13,14 @@ class CheckoutController
 
     public function checkout(): void
     {
+
+    Validator::required($_POST['asset_id'], 'Asset ID');
+
     $dto = new CheckoutAssetDTO(
         $_POST['asset_id'],
         $_SESSION['user']['id']
     );
-
+    
     $this->service->checkout($dto);
     header('Location: /');
     exit;

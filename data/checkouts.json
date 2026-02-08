@@ -1,9 +1,23 @@
 [
     {
-        "id": "chk_698880d8c495a",
-        "assetId": "698880c48ef9b",
+        "id": "chk_698891452f391",
+        "assetId": "69889133e1965",
         "userId": "u1",
-        "checkoutDate": "2026-02-08 12:26:00",
-        "returnDate": "2026-02-08 12:26:02"
+        "checkoutDate": "2026-02-08 13:36:05",
+        "returnDate": "2026-02-08 13:36:21"
+    },
+    {
+        "id": "chk_69889156caba4",
+        "assetId": "69889133e1965",
+        "userId": "u2",
+        "checkoutDate": "2026-02-08 13:36:22",
+        "returnDate": null
+    },
+    {
+        "id": "chk_698891583cf30",
+        "assetId": "69889141a8b29",
+        "userId": "u2",
+        "checkoutDate": "2026-02-08 13:36:24",
+        "returnDate": null
     }
 ]

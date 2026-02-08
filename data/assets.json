@@ -1,20 +1,20 @@
 [
     {
-        "id": "698880c48ef9b",
-        "name": "KEYBORD",
+        "id": "6988912914027",
+        "name": "COMPUTER",
         "category": "IT",
         "status": "available"
     },
     {
-        "id": "698880ca0b903",
+        "id": "69889133e1965",
         "name": "MOUSE",
         "category": "IT",
-        "status": "available"
+        "status": "checked_out"
     },
     {
-        "id": "698880d53ab4a",
-        "name": "LAPTOP",
+        "id": "69889141a8b29",
+        "name": "KEYBORD",
         "category": "IT",
-        "status": "available"
+        "status": "checked_out"
     }
 ]
