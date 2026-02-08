@@ -43,5 +43,9 @@ if ($path === '/login' && $method === 'GET') {
 } elseif ($method === 'POST') {
     $assetController->create();
 } else {
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit;
+    }
     $assetController->index();
 }

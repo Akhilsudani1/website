@@ -6,6 +6,7 @@ namespace App\Domain\Service;
 use App\Domain\Entity\Checkout;
 use App\Storage\AssetRepositoryInterface;
 use App\Storage\CheckoutRepositoryInterface;
+use App\Domain\DTO\CheckoutAssetDTO;
 use Exception;
 
 class CheckoutService
@@ -16,13 +17,13 @@ class CheckoutService
         private AuthService $auth
     ) {}
 
-    public function checkout(string $assetId): void
-    {
+    public function checkout(CheckoutAssetDTO $dto): void
+        {
         $this->auth->requireLogin();
 
         $userId = $_SESSION['user']['id'];
 
-        $asset = $this->assetRepo->findById($assetId);
+        $asset = $this->assetRepo->findById($dto->assetId);
 
         if (!$asset || !$asset->isAvailable()) {
             throw new Exception('Asset not available');
@@ -32,7 +33,7 @@ class CheckoutService
         $this->assetRepo->update($asset);
 
         $this->checkoutRepo->save(
-            new Checkout(uniqid('chk_'), $assetId, $userId, date('Y-m-d H:i:s'))
+            new Checkout(uniqid('chk_'), $dto->assetId, $dto->userId, date('Y-m-d H:i:s'))
         );
     }
 

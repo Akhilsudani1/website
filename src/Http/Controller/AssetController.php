@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controller;
 
 use App\Domain\Service\AssetService;
+use App\Domain\DTO\CreateAssetDTO;
 
 class AssetController
 {
@@ -47,11 +48,15 @@ class AssetController
             echo "<br>";
         }
     }
-
     public function create(): void
     {
-        $this->service->create($_POST['name'], $_POST['category']);
-        header('Location: /');
-        exit;
+    $dto = new CreateAssetDTO(
+        $_POST['name'],
+        $_POST['category']
+    );
+
+    $this->service->create($dto);
+    header('Location: /');
+    exit;
     }
 }

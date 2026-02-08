@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controller;
 
 use App\Domain\Service\CheckoutService;
+use App\Domain\DTO\CheckoutAssetDTO;
 
 class CheckoutController
 {
@@ -11,9 +12,14 @@ class CheckoutController
 
     public function checkout(): void
     {
-        $this->service->checkout($_POST['asset_id'], 'user_1');
-        header('Location: /');
-        exit;
+    $dto = new CheckoutAssetDTO(
+        $_POST['asset_id'],
+        $_SESSION['user']['id']
+    );
+
+    $this->service->checkout($dto);
+    header('Location: /');
+    exit;
     }
 
     public function return(): void

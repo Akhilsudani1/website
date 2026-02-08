@@ -1,19 +1,19 @@
 [
     {
-        "id": "asset_6988664e85049",
-        "name": "Laptop",
+        "id": "698880c48ef9b",
+        "name": "KEYBORD",
         "category": "IT",
         "status": "available"
     },
     {
-        "id": "asset_69886ca0a182a",
-        "name": "CPU",
-        "category": "IT",
-        "status": "available"
-    },
-    {
-        "id": "asset_69886ebe4fe0b",
+        "id": "698880ca0b903",
         "name": "MOUSE",
+        "category": "IT",
+        "status": "available"
+    },
+    {
+        "id": "698880d53ab4a",
+        "name": "LAPTOP",
         "category": "IT",
         "status": "available"
     }
