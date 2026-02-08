@@ -8,44 +8,46 @@ use Exception;
 
 class AuthService
 {
-    public function __construct(private UserRepositoryInterface $repo) {}
+    public function __construct(
+        private UserRepositoryInterface $userRepo
+    ) {}
 
     public function login(string $email, string $password): void
     {
-        $user = $this->repo->findByEmail($email);
+        $user = $this->userRepo->findByEmail($email);
 
-        if (!$user || $user->getPassword() !== $password) {
+        if (!$user) {
+            throw new Exception('Invalid credentials');
+        }
+
+        if (!password_verify($password, $user->getPassword())) {
             throw new Exception('Invalid credentials');
         }
 
         $_SESSION['user'] = [
-            'id' => $user->getId(),
+            'id'    => $user->getId(),
             'email' => $user->getEmail(),
-            'role' => $user->getRole()
+            'role'  => $user->getRole()
         ];
     }
 
     public function logout(): void
     {
         session_destroy();
-    }
-
-    public function user(): ?array
-    {
-        return $_SESSION['user'] ?? null;
-    }
-
-    public function requireAdmin(): void
-    {
-        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-            throw new Exception('Admin access only');
-        }
+        header('Location: /login');
+        exit;
     }
 
     public function requireLogin(): void
     {
         if (!isset($_SESSION['user'])) {
-            throw new Exception('Login required');
+            header('Location: /login');
+            exit;
         }
+    }
+
+    public function user(): array
+    {
+        return $_SESSION['user'];
     }
 }

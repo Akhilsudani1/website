@@ -2,13 +2,13 @@
   {
     "id": "u1",
     "email": "admin@test.com",
-    "password": "admin123",
+    "password": "$2y$12$0d27nZoYo1a/yIucsZ/sDOb1fhQh9cP8hv6ms5KhodDxNfgf82SqG",
     "role": "admin"
   },
   {
     "id": "u2",
     "email": "user@test.com",
-    "password": "user123",
+    "password": "$2y$12$VdWHZDDzvOSBYewtnWegEudZZuDhDHVr5W6lXMw0piEz51E1rRdpm",
     "role": "user"
   }
 ]

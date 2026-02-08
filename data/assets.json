@@ -3,13 +3,13 @@
         "id": "6988912914027",
         "name": "COMPUTER",
         "category": "IT",
-        "status": "available"
+        "status": "checked_out"
     },
     {
         "id": "69889133e1965",
         "name": "MOUSE",
         "category": "IT",
-        "status": "available"
+        "status": "checked_out"
     },
     {
         "id": "69889141a8b29",
