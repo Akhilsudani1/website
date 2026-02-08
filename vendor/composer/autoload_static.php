@@ -21,6 +21,26 @@ class ComposerStaticInite48edc07a978d7ac23b8188fa2accd83
     );
 
     public static $classMap = array (
+        'App\\Domain\\DTO\\CheckoutAssetDTO' => __DIR__ . '/../..' . '/src/Domain/DTO/CheckoutAssetDTO.php',
+        'App\\Domain\\DTO\\CreateAssetDTO' => __DIR__ . '/../..' . '/src/Domain/DTO/CreateAssetDTO.php',
+        'App\\Domain\\Entity\\Asset' => __DIR__ . '/../..' . '/src/Domain/Entity/Asset.php',
+        'App\\Domain\\Entity\\Checkout' => __DIR__ . '/../..' . '/src/Domain/Entity/Checkout.php',
+        'App\\Domain\\Entity\\User' => __DIR__ . '/../..' . '/src/Domain/Entity/User.php',
+        'App\\Domain\\Service\\AssetService' => __DIR__ . '/../..' . '/src/Domain/Service/AssetService.php',
+        'App\\Domain\\Service\\AuthService' => __DIR__ . '/../..' . '/src/Domain/Service/AuthService.php',
+        'App\\Domain\\Service\\CheckoutService' => __DIR__ . '/../..' . '/src/Domain/Service/CheckoutService.php',
+        'App\\Domain\\Validation\\Validator' => __DIR__ . '/../..' . '/src/Domain/Validation/Validator.php',
+        'App\\Http\\Controller\\AssetController' => __DIR__ . '/../..' . '/src/Http/Controller/AssetController.php',
+        'App\\Http\\Controller\\AuthController' => __DIR__ . '/../..' . '/src/Http/Controller/AuthController.php',
+        'App\\Http\\Controller\\CheckoutController' => __DIR__ . '/../..' . '/src/Http/Controller/CheckoutController.php',
+        'App\\Notification\\LogNotificationChannel' => __DIR__ . '/../..' . '/src/Notification/LogNotificationChannel.php',
+        'App\\Notification\\NotificationChannel' => __DIR__ . '/../..' . '/src/Notification/NotificationChannel.php',
+        'App\\Storage\\AssetRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/AssetRepositoryInterface.php',
+        'App\\Storage\\CheckoutRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/CheckoutRepositoryInterface.php',
+        'App\\Storage\\File\\FileAssetRepository' => __DIR__ . '/../..' . '/src/Storage/File/FileAssetRepository.php',
+        'App\\Storage\\File\\FileCheckoutRepository' => __DIR__ . '/../..' . '/src/Storage/File/FileCheckoutRepository.php',
+        'App\\Storage\\File\\FileUserRepository' => __DIR__ . '/../..' . '/src/Storage/File/FileUserRepository.php',
+        'App\\Storage\\UserRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/UserRepositoryInterface.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

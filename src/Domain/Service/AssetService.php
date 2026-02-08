@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace App\Domain\Service;
 
 use App\Domain\Entity\Asset;
-use App\Storage\AssetRepositoryInterface;
 use App\Domain\DTO\CreateAssetDTO;
-use Exception;
+use App\Storage\AssetRepositoryInterface;
 
 class AssetService
 {
@@ -14,19 +13,20 @@ class AssetService
         private AssetRepositoryInterface $repo,
         private AuthService $auth
     ) {}
+
     public function create(CreateAssetDTO $dto): void
     {
-    $this->auth->requireAdmin();
+        // admin-only
+        $this->auth->requireAdmin();
 
-    $asset = new Asset(
-        uniqid(),
-        $dto->name,
-        $dto->category,
-        'available'
-    );
+        $asset = new Asset(
+            uniqid('a_'),
+            $dto->name,
+            $dto->category,
+            'available'
+        );
 
-    $this->repo->save($asset);
-    
+        $this->repo->save($asset);
     }
 
     public function list(): array

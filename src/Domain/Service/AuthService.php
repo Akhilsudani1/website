@@ -4,38 +4,37 @@ declare(strict_types=1);
 namespace App\Domain\Service;
 
 use App\Storage\UserRepositoryInterface;
-use Exception;
 
 class AuthService
 {
     public function __construct(
-        private UserRepositoryInterface $userRepo
+        private UserRepositoryInterface $users
     ) {}
 
-    public function login(string $email, string $password): void
+    public function login(string $email, string $password): bool
     {
-        $user = $this->userRepo->findByEmail($email);
+        $user = $this->users->findByEmail($email);
 
         if (!$user) {
-            throw new Exception('Invalid credentials');
+            return false;
         }
 
         if (!password_verify($password, $user->getPassword())) {
-            throw new Exception('Invalid credentials');
+            return false;
         }
 
         $_SESSION['user'] = [
             'id'    => $user->getId(),
             'email' => $user->getEmail(),
-            'role'  => $user->getRole()
+            'role'  => $user->getRole(),
         ];
+
+        return true;
     }
 
     public function logout(): void
     {
-        session_destroy();
-        header('Location: /login');
-        exit;
+        unset($_SESSION['user']);
     }
 
     public function requireLogin(): void
@@ -46,8 +45,12 @@ class AuthService
         }
     }
 
-    public function user(): array
+    public function requireAdmin(): void
     {
-        return $_SESSION['user'];
+        $this->requireLogin();
+
+        if ($_SESSION['user']['role'] !== 'admin') {
+            throw new \Exception('Admin access required');
+        }
     }
 }
