@@ -13,24 +13,32 @@ class CheckoutController
 
     public function checkout(): void
     {
+        try {
+            Validator::required($_POST['asset_id'], 'Asset ID');
 
-    Validator::required($_POST['asset_id'], 'Asset ID');
-
-    $dto = new CheckoutAssetDTO(
-        $_POST['asset_id'],
-        $_SESSION['user']['id']
-    );
-    
-    $this->service->checkout($dto);
-    header('Location: /');
-    exit;
+            $dto = new CheckoutAssetDTO(
+                $_POST['asset_id'],
+                $_SESSION['user']['id']
+            );
+            
+            $this->service->checkout($dto);
+            header('Location: /');
+            exit;
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function return(): void
     {
-        $this->service->returnAsset($_POST['asset_id']);
-        header('Location: /');
-        exit;
+        try {
+            Validator::required($_POST['asset_id'], 'Asset ID');
+            $this->service->returnAsset($_POST['asset_id']);
+            header('Location: /');
+            exit;
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function history(): void

@@ -4,12 +4,16 @@ declare(strict_types=1);
 namespace App\Http\Controller;
 
 use App\Domain\Service\AssetService;
+use App\Domain\Service\CheckoutService;
 use App\Domain\DTO\CreateAssetDTO;
 use App\Domain\Validation\Validator;
 
 class AssetController
 {
-    public function __construct(private AssetService $service) {}
+    public function __construct(
+        private AssetService $service,
+        private CheckoutService $checkoutService
+    ) {}
 
     public function index(): void
     {
@@ -39,11 +43,15 @@ class AssetController
                     <button>Checkout</button>
                 </form>";
             } else {
-                echo "
+                echo "<span style='color:red'>Checked out</span>";
+                
+                if ($this->checkoutService->canUserReturnAsset($asset->getId())) {
+                    echo "
                 <form method='POST' action='/return' style='display:inline'>
                     <input type='hidden' name='asset_id' value='{$asset->getId()}'>
                     <button>Return</button>
                 </form>";
+                }
             }
 
             echo "<br>";

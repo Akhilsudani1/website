@@ -1,0 +1,26 @@
+[
+    {
+        "id": "a_6988cf2bbfaaf",
+        "name": "Keybord",
+        "category": "electronic",
+        "status": "checked_out"
+    },
+    {
+        "id": "a_6988cf4510620",
+        "name": "Mouse",
+        "category": "Electronic",
+        "status": "available"
+    },
+    {
+        "id": "a_6988cf562d6e6",
+        "name": "Laptop",
+        "category": "Electronic",
+        "status": "checked_out"
+    },
+    {
+        "id": "a_6988cf7a00ea4",
+        "name": "Moniter",
+        "category": "Electronic",
+        "status": "available"
+    }
+]

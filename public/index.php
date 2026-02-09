@@ -7,6 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use App\Domain\Service\{AssetService, CheckoutService, AuthService};
 use App\Http\Controller\{AssetController, CheckoutController, AuthController};
 use App\Storage\File\{FileAssetRepository, FileCheckoutRepository, FileUserRepository};
+use App\Notification\{EmailNotificationChannel, LogNotificationChannel};
 
 $authService = new AuthService(
     new FileUserRepository(__DIR__ . '/../data/users.json')
@@ -15,12 +16,20 @@ $authService = new AuthService(
 $assetRepo = new FileAssetRepository(__DIR__ . '/../data/assets.json');
 $checkoutRepo = new FileCheckoutRepository(__DIR__ . '/../data/checkouts.json');
 
+// Use LogNotificationChannel by default. 
+// To use EmailNotificationChannel, change it here:
+// $notificationChannel = new EmailNotificationChannel();
+$notificationChannel = new LogNotificationChannel();
+
+$checkoutService = new CheckoutService($assetRepo, $checkoutRepo, $authService, $notificationChannel);
+
 $assetController = new AssetController(
-    new AssetService($assetRepo, $authService)
+    new AssetService($assetRepo, $authService),
+    $checkoutService
 );
 
 $checkoutController = new CheckoutController(
-    new CheckoutService($assetRepo, $checkoutRepo, $authService)
+    $checkoutService
 );
 
 $authController = new AuthController($authService);
@@ -48,4 +57,6 @@ if ($path === '/login' && $method === 'GET') {
         exit;
     }
     $assetController->index();
+}
+?>
 }

@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controller\\AssetController' => $baseDir . '/src/Http/Controller/AssetController.php',
     'App\\Http\\Controller\\AuthController' => $baseDir . '/src/Http/Controller/AuthController.php',
     'App\\Http\\Controller\\CheckoutController' => $baseDir . '/src/Http/Controller/CheckoutController.php',
+    'App\\Notification\\EmailNotificationChannel' => $baseDir . '/src/Notification/EmailNotificationChannel.php',
     'App\\Notification\\LogNotificationChannel' => $baseDir . '/src/Notification/LogNotificationChannel.php',
     'App\\Notification\\NotificationChannel' => $baseDir . '/src/Notification/NotificationChannel.php',
     'App\\Storage\\AssetRepositoryInterface' => $baseDir . '/src/Storage/AssetRepositoryInterface.php',

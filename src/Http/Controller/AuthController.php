@@ -22,11 +22,11 @@ class AuthController
 
     public function login(): void
     {
-        try {
-            $this->service->login($_POST['email'], $_POST['password']);
+        if ($this->service->login($_POST['email'], $_POST['password'])) {
             header('Location: /');
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+            exit;
+        } else {
+            echo 'Invalid email or password';
         }
     }
 

@@ -1,0 +1,93 @@
+[
+    {
+        "id": "chk_6988cf801c82e",
+        "assetId": "a_6988cf2bbfaaf",
+        "userId": "u1",
+        "checkoutDate": "2026-02-08 18:01:36",
+        "returnDate": "2026-02-08 18:01:45"
+    },
+    {
+        "id": "chk_6988cf9598563",
+        "assetId": "a_6988cf4510620",
+        "userId": "u2",
+        "checkoutDate": "2026-02-08 18:01:57",
+        "returnDate": "2026-02-08 18:02:06"
+    },
+    {
+        "id": "chk_698953e5e7d23",
+        "assetId": "a_6988cf7a00ea4",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:26:29",
+        "returnDate": "2026-02-09 03:26:48"
+    },
+    {
+        "id": "chk_698953e77d7da",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:26:31",
+        "returnDate": "2026-02-09 03:26:47"
+    },
+    {
+        "id": "chk_698953e9ad5ca",
+        "assetId": "a_6988cf4510620",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:26:33",
+        "returnDate": "2026-02-09 03:26:46"
+    },
+    {
+        "id": "chk_698953ea683c4",
+        "assetId": "a_6988cf2bbfaaf",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:26:34",
+        "returnDate": "2026-02-09 03:26:45"
+    },
+    {
+        "id": "chk_698954bbd3ad2",
+        "assetId": "a_6988cf2bbfaaf",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:30:03",
+        "returnDate": "2026-02-09 03:30:34"
+    },
+    {
+        "id": "chk_698954bee6ddd",
+        "assetId": "a_6988cf4510620",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:30:06",
+        "returnDate": "2026-02-09 03:30:36"
+    },
+    {
+        "id": "chk_698954bfd8384",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:30:07",
+        "returnDate": "2026-02-09 03:30:37"
+    },
+    {
+        "id": "chk_698954c0c3b8c",
+        "assetId": "a_6988cf7a00ea4",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:30:08",
+        "returnDate": "2026-02-09 03:30:39"
+    },
+    {
+        "id": "chk_698954e140c50",
+        "assetId": "a_6988cf2bbfaaf",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:30:41",
+        "returnDate": null
+    },
+    {
+        "id": "chk_698954ed174b7",
+        "assetId": "a_6988cf4510620",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:30:53",
+        "returnDate": "2026-02-09 03:40:10"
+    },
+    {
+        "id": "chk_69895708ad9e4",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 03:39:52",
+        "returnDate": null
+    }
+]
