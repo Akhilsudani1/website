@@ -1,14 +1,20 @@
 [
-  {
-    "id": "u1",
-    "email": "admin@test.com",
-    "password": "$2y$12$0d27nZoYo1a/yIucsZ/sDOb1fhQh9cP8hv6ms5KhodDxNfgf82SqG",
-    "role": "admin"
-  },
-  {
-    "id": "u2",
-    "email": "user@test.com",
-    "password": "$2y$12$VdWHZDDzvOSBYewtnWegEudZZuDhDHVr5W6lXMw0piEz51E1rRdpm",
-    "role": "user"
-  }
+    {
+        "id": "u1",
+        "email": "admin@test.com",
+        "password": "$2y$12$0d27nZoYo1a\/yIucsZ\/sDOb1fhQh9cP8hv6ms5KhodDxNfgf82SqG",
+        "role": "admin"
+    },
+    {
+        "id": "u2",
+        "email": "user@test.com",
+        "password": "$2y$12$VdWHZDDzvOSBYewtnWegEudZZuDhDHVr5W6lXMw0piEz51E1rRdpm",
+        "role": "user"
+    },
+    {
+        "id": "u_698a04ead1c6e",
+        "email": "raj@test.com",
+        "password": "$2y$12$jPNj1aMI7EI1rupv3uy82eZAtcxa5t4ZO0IAGZ3qNbhvZA73tdIjW",
+        "role": "employee"
+    }
 ]

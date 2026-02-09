@@ -20,12 +20,24 @@ A small, elegant OOP-based asset checkout management system built with plain PHP
 ## ✨ Features
 
 ### Core Functionality
+- **User Registration:** Employee self-registration with email/password (hashed with bcrypt)
 - **User Authentication:** Email/password login with role-based access control
 - **Asset Management:** Create, view, and manage shared assets (Admin only)
+- **Asset Status:** Assets have statuses: `available`, `checked_out`, `retired`
 - **Asset Checkout:** Request and checkout available assets
 - **Asset Return:** Return checked-out assets (only by user who checked them out)
-- **Checkout History:** Track asset usage history
+- **Asset Retirement:** Retire assets to prevent future checkouts (Admin only)
+- **Single Asset View:** View detailed information about a specific asset
+- **Checkout History:** Track asset usage history globally and per-asset
 - **Role-Based Access:** Admin and Employee roles with different permissions
+- **Router with Method Spoofing:** Modern routing with GET, POST, PATCH, DELETE support via `_method`
+
+### Security Features
+- **Password Hashing:** Bcrypt password hashing (password_hash/password_verify)
+- **Session Regeneration:** After login, session ID is regenerated
+- **XSS Protection:** All output escaped with htmlspecialchars()
+- **File Locking:** JSON writes use LOCK_EX to prevent corruption
+- **Input Validation:** Validator ensures required fields and proper types
 
 ### OOP & Design Principles
 - ✅ **Encapsulation:** Private properties with public methods
@@ -35,6 +47,7 @@ A small, elegant OOP-based asset checkout management system built with plain PHP
 - ✅ **Dependency Injection:** Constructor-based dependency injection
 - ✅ **Separation of Concerns:** Controllers, Services, Repositories clearly separated
 - ✅ **Authorization:** Only checkout owners can return their assets
+- ✅ **Router Pattern:** Centralized routing with support for method spoofing
 
 ---
 

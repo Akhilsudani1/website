@@ -14,7 +14,7 @@ class CheckoutController
     public function checkout(): void
     {
         try {
-            Validator::required($_POST['asset_id'], 'Asset ID');
+            Validator::required($_POST['asset_id'] ?? '', 'Asset ID');
 
             $dto = new CheckoutAssetDTO(
                 $_POST['asset_id'],
@@ -25,33 +25,52 @@ class CheckoutController
             header('Location: /');
             exit;
         } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
+            echo 'Error: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
         }
     }
 
     public function return(): void
     {
         try {
-            Validator::required($_POST['asset_id'], 'Asset ID');
+            Validator::required($_POST['asset_id'] ?? '', 'Asset ID');
             $this->service->returnAsset($_POST['asset_id']);
             header('Location: /');
             exit;
         } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
+            echo 'Error: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
         }
     }
 
     public function history(): void
     {
-        echo "<h2>Checkout History</h2>";
+        echo "<h2>Checkout History</h2>\n        <a href='/'>Back to Assets</a><hr>";
 
         foreach ($this->service->history() as $row) {
-            echo "
-            Asset ID: {$row['assetId']} <br>
-            User: {$row['userId']} <br>
-            Checkout: {$row['checkoutDate']} <br>
-            Return: " . ($row['returnDate'] ?? 'Not returned') . "
-            <hr>";
+            $assetId = htmlspecialchars($row['assetId'], ENT_QUOTES, 'UTF-8');
+            $userId = htmlspecialchars($row['userId'], ENT_QUOTES, 'UTF-8');
+            $checkoutDate = htmlspecialchars($row['checkoutDate'], ENT_QUOTES, 'UTF-8');
+            $returnDate = htmlspecialchars($row['returnDate'] ?? 'Not returned', ENT_QUOTES, 'UTF-8');
+            echo "\n            Asset ID: <a href='/asset?id={$assetId}'>{$assetId}</a> <br>\n            User: {$userId} <br>\n            Checkout: {$checkoutDate} <br>\n            Return: {$returnDate}\n            <hr>";
+        }
+    }
+
+    public function assetHistory(): void
+    {
+        $assetId = $_GET['id'] ?? '';
+        if (!$assetId) {
+            echo '<h2>Asset ID required</h2>';
+            echo '<a href="/">Back to Assets</a>';
+            return;
+        }
+
+        echo "<h2>Checkout History for Asset: " . htmlspecialchars($assetId, ENT_QUOTES, 'UTF-8') . "</h2>";
+        echo "<a href='/asset?id=" . htmlspecialchars($assetId, ENT_QUOTES, 'UTF-8') . "'>Back to Asset</a><hr>";
+
+        foreach ($this->service->historyByAssetId($assetId) as $row) {
+            $userId = htmlspecialchars($row['userId'], ENT_QUOTES, 'UTF-8');
+            $checkoutDate = htmlspecialchars($row['checkoutDate'], ENT_QUOTES, 'UTF-8');
+            $returnDate = htmlspecialchars($row['returnDate'] ?? 'Not returned', ENT_QUOTES, 'UTF-8');
+            echo "\n            User: {$userId} <br>\n            Checkout: {$checkoutDate} <br>\n            Return: {$returnDate}\n            <hr>";
         }
     }
 }

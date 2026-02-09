@@ -96,5 +96,40 @@
         "userId": "u2",
         "checkoutDate": "2026-02-09 03:55:27",
         "returnDate": "2026-02-09 03:55:29"
+    },
+    {
+        "id": "chk_698a04972e1c7",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 16:00:23",
+        "returnDate": "2026-02-09 16:01:02"
+    },
+    {
+        "id": "chk_698a04ac866dd",
+        "assetId": "a_6988cf7a00ea4",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 16:00:44",
+        "returnDate": "2026-02-09 16:00:46"
+    },
+    {
+        "id": "chk_698a04b0d3703",
+        "assetId": "a_6988cf7a00ea4",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 16:00:48",
+        "returnDate": null
+    },
+    {
+        "id": "chk_698a04c4b9978",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 16:01:08",
+        "returnDate": "2026-02-09 16:01:10"
+    },
+    {
+        "id": "chk_698a04f42ae30",
+        "assetId": "a_6988cf562d6e6",
+        "userId": "u_698a04ead1c6e",
+        "checkoutDate": "2026-02-09 16:01:56",
+        "returnDate": "2026-02-09 16:02:00"
     }
 ]

@@ -17,16 +17,55 @@ class AuthController
             <input name='email' placeholder='Email' required>
             <input name='password' type='password' placeholder='Password' required>
             <button>Login</button>
-        </form>";
+        </form>
+        <p>Don't have an account? <a href='/register'>Register here</a></p>";
+    }
+
+    public function registerForm(): void
+    {
+        echo "
+        <h2>Register</h2>
+        <form method='POST' action='/register'>
+            <input name='email' placeholder='Email' type='email' required>
+            <input name='password' type='password' placeholder='Password (min 6 chars)' required>
+            <input name='password_confirm' type='password' placeholder='Confirm Password' required>
+            <button>Register</button>
+        </form>
+        <p>Already have an account? <a href='/login'>Login here</a></p>";
     }
 
     public function login(): void
     {
-        if ($this->service->login($_POST['email'], $_POST['password'])) {
+        if ($this->service->login($_POST['email'] ?? '', $_POST['password'] ?? '')) {
             header('Location: /');
             exit;
         } else {
-            echo 'Invalid email or password';
+            echo htmlspecialchars('Invalid email or password', ENT_QUOTES, 'UTF-8');
+        }
+    }
+
+    public function register(): void
+    {
+        try {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $passwordConfirm = $_POST['password_confirm'] ?? '';
+
+            if ($password !== $passwordConfirm) {
+                throw new \InvalidArgumentException('Passwords do not match');
+            }
+
+            $this->service->register($email, $password);
+            
+            // Auto-login after registration
+            if ($this->service->login($email, $password)) {
+                header('Location: /');
+                exit;
+            }
+
+            echo 'Registration successful. <a href="/login">Login</a>';
+        } catch (\Exception $e) {
+            echo 'Error: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
         }
     }
 
@@ -34,5 +73,6 @@ class AuthController
     {
         $this->service->logout();
         header('Location: /login');
+        exit;
     }
 }

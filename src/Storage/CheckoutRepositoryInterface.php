@@ -11,4 +11,5 @@ interface CheckoutRepositoryInterface
     public function findActiveByAssetId(string $assetId): ?Checkout;
     public function markReturned(string $checkoutId): void;
     public function findAll(): array;
+    public function findByAssetId(string $assetId): array;
 }

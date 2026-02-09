@@ -32,7 +32,7 @@ class FileAssetRepository implements AssetRepositoryInterface
     {
         $data = json_decode(file_get_contents($this->file), true) ?? [];
         $data[] = $asset->toArray();
-        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
     }
 
     public function update(Asset $asset): void
@@ -45,6 +45,6 @@ class FileAssetRepository implements AssetRepositoryInterface
             }
         }
 
-        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
     }
 }

@@ -9,7 +9,7 @@
         "id": "a_6988cf4510620",
         "name": "Mouse",
         "category": "Electronic",
-        "status": "available"
+        "status": "retired"
     },
     {
         "id": "a_6988cf562d6e6",
@@ -21,6 +21,6 @@
         "id": "a_6988cf7a00ea4",
         "name": "Moniter",
         "category": "Electronic",
-        "status": "available"
+        "status": "checked_out"
     }
 ]

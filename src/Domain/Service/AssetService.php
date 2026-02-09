@@ -34,4 +34,23 @@ class AssetService
         $this->auth->requireLogin();
         return $this->repo->findAll();
     }
+
+    public function retire(string $assetId): void
+    {
+        $this->auth->requireAdmin();
+
+        $asset = $this->repo->findById($assetId);
+        if (!$asset) {
+            throw new \Exception('Asset not found');
+        }
+
+        $asset->retire();
+        $this->repo->update($asset);
+    }
+
+    public function findById(string $id): ?Asset
+    {
+        $this->auth->requireLogin();
+        return $this->repo->findById($id);
+    }
 }

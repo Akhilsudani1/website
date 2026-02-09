@@ -22,7 +22,7 @@ class FileCheckoutRepository implements CheckoutRepositoryInterface
             'returnDate' => null
         ];
 
-        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
     }
 
     public function findActiveByAssetId(string $assetId): ?Checkout
@@ -52,11 +52,25 @@ class FileCheckoutRepository implements CheckoutRepositoryInterface
             }
         }
 
-        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
     }
 
     public function findAll(): array
     {
         return json_decode(file_get_contents($this->file), true) ?? [];
+    }
+
+    public function findByAssetId(string $assetId): array
+    {
+        $data = json_decode(file_get_contents($this->file), true) ?? [];
+        $results = [];
+
+        foreach ($data as $row) {
+            if ($row['assetId'] === $assetId) {
+                $results[] = $row;
+            }
+        }
+
+        return $results;
     }
 }

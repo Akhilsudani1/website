@@ -26,4 +26,18 @@ class FileUserRepository implements UserRepositoryInterface
         }
         return null;
     }
+
+    public function save(User $user): void
+    {
+        $data = json_decode(file_get_contents($this->file), true) ?? [];
+
+        $data[] = [
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'role' => $user->getRole()
+        ];
+
+        file_put_contents($this->file, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
+    }
 }

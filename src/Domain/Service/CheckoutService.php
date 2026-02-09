@@ -33,7 +33,15 @@ class CheckoutService
 
         $asset = $this->assetRepo->findById($dto->assetId);
 
-        if (!$asset || !$asset->isAvailable()) {
+        if (!$asset) {
+            throw new Exception('Asset not found');
+        }
+
+        if ($asset->isRetired()) {
+            throw new Exception('Cannot checkout retired asset');
+        }
+
+        if (!$asset->isAvailable()) {
             throw new Exception('Asset not available');
         }
 
@@ -78,6 +86,12 @@ class CheckoutService
     {
         $this->auth->requireLogin();
         return $this->checkoutRepo->findAll();
+    }
+
+    public function historyByAssetId(string $assetId): array
+    {
+        $this->auth->requireLogin();
+        return $this->checkoutRepo->findByAssetId($assetId);
     }
 
     public function canUserReturnAsset(string $assetId): bool

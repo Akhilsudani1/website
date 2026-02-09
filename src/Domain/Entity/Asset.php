@@ -32,6 +32,16 @@ class Asset
         $this->status = 'available';
     }
 
+    public function retire(): void
+    {
+        $this->status = 'retired';
+    }
+
+    public function isRetired(): bool
+    {
+        return $this->status === 'retired';
+    }
+
     public function toArray(): array
     {
         return [
