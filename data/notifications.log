@@ -1,2 +1,6 @@
 [2026-02-09 03:39:52] Checkout confirmed: User admin@test.com checked out asset Laptop (ID: a_6988cf562d6e6)
 [2026-02-09 03:40:10] Asset returned: User user@test.com returned asset Mouse (ID: a_6988cf4510620)
+[2026-02-09 03:55:27] Checkout confirmed: User user@test.com checked out asset Mouse (ID: a_6988cf4510620)
+[2026-02-09 03:55:29] Asset returned: User user@test.com returned asset Mouse (ID: a_6988cf4510620)
+[2026-02-09 03:55:40] Asset returned: User admin@test.com returned asset Keybord (ID: a_6988cf2bbfaaf)
+[2026-02-09 03:55:41] Asset returned: User admin@test.com returned asset Laptop (ID: a_6988cf562d6e6)

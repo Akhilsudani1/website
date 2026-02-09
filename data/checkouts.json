@@ -74,7 +74,7 @@
         "assetId": "a_6988cf2bbfaaf",
         "userId": "u1",
         "checkoutDate": "2026-02-09 03:30:41",
-        "returnDate": null
+        "returnDate": "2026-02-09 03:55:40"
     },
     {
         "id": "chk_698954ed174b7",
@@ -88,6 +88,13 @@
         "assetId": "a_6988cf562d6e6",
         "userId": "u1",
         "checkoutDate": "2026-02-09 03:39:52",
-        "returnDate": null
+        "returnDate": "2026-02-09 03:55:41"
+    },
+    {
+        "id": "chk_69895aaf12008",
+        "assetId": "a_6988cf4510620",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 03:55:27",
+        "returnDate": "2026-02-09 03:55:29"
     }
 ]
