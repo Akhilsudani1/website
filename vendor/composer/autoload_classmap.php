@@ -6,11 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Core\\Container' => $baseDir . '/src/Core/Container.php',
     'App\\Domain\\DTO\\CheckoutAssetDTO' => $baseDir . '/src/Domain/DTO/CheckoutAssetDTO.php',
     'App\\Domain\\DTO\\CreateAssetDTO' => $baseDir . '/src/Domain/DTO/CreateAssetDTO.php',
     'App\\Domain\\Entity\\Asset' => $baseDir . '/src/Domain/Entity/Asset.php',
     'App\\Domain\\Entity\\Checkout' => $baseDir . '/src/Domain/Entity/Checkout.php',
     'App\\Domain\\Entity\\User' => $baseDir . '/src/Domain/Entity/User.php',
+    'App\\Domain\\Enum\\AssetStatus' => $baseDir . '/src/Domain/Enum/AssetStatus.php',
+    'App\\Domain\\Enum\\UserRole' => $baseDir . '/src/Domain/Enum/UserRole.php',
     'App\\Domain\\Service\\AssetService' => $baseDir . '/src/Domain/Service/AssetService.php',
     'App\\Domain\\Service\\AuthService' => $baseDir . '/src/Domain/Service/AuthService.php',
     'App\\Domain\\Service\\CheckoutService' => $baseDir . '/src/Domain/Service/CheckoutService.php',
@@ -18,10 +21,12 @@ return array(
     'App\\Http\\Controller\\AssetController' => $baseDir . '/src/Http/Controller/AssetController.php',
     'App\\Http\\Controller\\AuthController' => $baseDir . '/src/Http/Controller/AuthController.php',
     'App\\Http\\Controller\\CheckoutController' => $baseDir . '/src/Http/Controller/CheckoutController.php',
+    'App\\Http\\Middleware\\AuthGuard' => $baseDir . '/src/Http/Middleware/AuthGuard.php',
     'App\\Http\\Router' => $baseDir . '/src/Http/Router.php',
     'App\\Notification\\EmailNotificationChannel' => $baseDir . '/src/Notification/EmailNotificationChannel.php',
     'App\\Notification\\LogNotificationChannel' => $baseDir . '/src/Notification/LogNotificationChannel.php',
     'App\\Notification\\NotificationChannel' => $baseDir . '/src/Notification/NotificationChannel.php',
+    'App\\Notification\\NotificationManager' => $baseDir . '/src/Notification/NotificationManager.php',
     'App\\Storage\\AssetRepositoryInterface' => $baseDir . '/src/Storage/AssetRepositoryInterface.php',
     'App\\Storage\\CheckoutRepositoryInterface' => $baseDir . '/src/Storage/CheckoutRepositoryInterface.php',
     'App\\Storage\\File\\FileAssetRepository' => $baseDir . '/src/Storage/File/FileAssetRepository.php',

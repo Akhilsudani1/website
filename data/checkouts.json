@@ -138,5 +138,26 @@
         "userId": "u1",
         "checkoutDate": "2026-02-09 16:14:10",
         "returnDate": "2026-02-09 16:14:18"
+    },
+    {
+        "id": "chk_698a0dbaf21f7",
+        "assetId": "a_698a07c70967a",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 16:39:22",
+        "returnDate": "2026-02-09 16:39:24"
+    },
+    {
+        "id": "chk_698a0dc2dd95d",
+        "assetId": "a_698a07c70967a",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 16:39:30",
+        "returnDate": "2026-02-09 16:39:33"
+    },
+    {
+        "id": "chk_698a0dd13580b",
+        "assetId": "a_698a07c70967a",
+        "userId": "u2",
+        "checkoutDate": "2026-02-09 16:39:45",
+        "returnDate": "2026-02-09 16:39:48"
     }
 ]
