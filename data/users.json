@@ -16,5 +16,11 @@
         "email": "raj@test.com",
         "password": "$2y$12$jPNj1aMI7EI1rupv3uy82eZAtcxa5t4ZO0IAGZ3qNbhvZA73tdIjW",
         "role": "employee"
+    },
+    {
+        "id": "u_698a29e4215b3",
+        "email": "raj@admin.com",
+        "password": "$2y$12$w1pLpQiJgQOjA\/3QL9Cq4OzC5BB2wJ3Mf9bOSU0EyUYQ.BfR4uarq",
+        "role": "employee"
     }
 ]

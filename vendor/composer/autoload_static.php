@@ -39,6 +39,7 @@ class ComposerStaticInite48edc07a978d7ac23b8188fa2accd83
         'App\\Notification\\EmailNotificationChannel' => __DIR__ . '/../..' . '/src/Notification/EmailNotificationChannel.php',
         'App\\Notification\\LogNotificationChannel' => __DIR__ . '/../..' . '/src/Notification/LogNotificationChannel.php',
         'App\\Notification\\NotificationChannel' => __DIR__ . '/../..' . '/src/Notification/NotificationChannel.php',
+        'App\\Notification\\NotificationChannelFactory' => __DIR__ . '/../..' . '/src/Notification/NotificationChannelFactory.php',
         'App\\Storage\\AssetRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/AssetRepositoryInterface.php',
         'App\\Storage\\CheckoutRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/CheckoutRepositoryInterface.php',
         'App\\Storage\\File\\FileAssetRepository' => __DIR__ . '/../..' . '/src/Storage/File/FileAssetRepository.php',

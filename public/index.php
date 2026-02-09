@@ -8,7 +8,7 @@ use App\Domain\Service\{AssetService, CheckoutService, AuthService};
 use App\Http\Controller\{AssetController, CheckoutController, AuthController};
 use App\Http\Router;
 use App\Storage\File\{FileAssetRepository, FileCheckoutRepository, FileUserRepository};
-use App\Notification\{EmailNotificationChannel, LogNotificationChannel};
+use App\Notification\NotificationChannelFactory;
 
 $authService = new AuthService(
     new FileUserRepository(__DIR__ . '/../data/users.json')
@@ -17,7 +17,9 @@ $authService = new AuthService(
 $assetRepo = new FileAssetRepository(__DIR__ . '/../data/assets.json');
 $checkoutRepo = new FileCheckoutRepository(__DIR__ . '/../data/checkouts.json');
 
-$notificationChannel = new LogNotificationChannel();
+// Create notification channel from configuration
+// To swap channels, edit config/app.php and change 'notification_channel' value
+$notificationChannel = NotificationChannelFactory::createFromConfig();
 
 $checkoutService = new CheckoutService($assetRepo, $checkoutRepo, $authService, $notificationChannel);
 

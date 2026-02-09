@@ -4,279 +4,202 @@
 
 ### FR-01: User Authentication
 **As a** user  
-**I want to** log in with my email and password  
-**So that** I can access the system based on my role
+**I want to** log in using valid credentials  
+**So that** I can access system features based on my role  
 
-- User provides email and password
-- System verifies credentials using password_verify()
-- If valid, session is created with user data
-- If invalid, user is shown error message
+- System authenticates users securely  
+- On successful login, a user session is created  
+- On failure, a generic error message is displayed  
+- Access permissions are determined by user role  
+
+---
 
 ### FR-02: User Registration
 **As a** new employee  
-**I want to** self-register with email and password  
-**So that** I can access the system without admin intervention
+**I want to** register with valid credentials  
+**So that** I can access the system independently  
 
-- User provides email and password
-- Email must be valid format and unique
-- Password must be at least 6 characters
-- Password is hashed using password_hash(PASSWORD_BCRYPT)
-- User is created with 'employee' role by default
+- Users can register using a valid and unique email address  
+- Passwords must meet minimum strength requirements  
+- New users are assigned the **employee** role by default  
+
+---
 
 ### FR-03: User Logout
 **As a** logged-in user  
 **I want to** log out  
-**So that** my session is terminated
+**So that** my session is securely terminated  
 
-- User clicks logout
-- Session is destroyed
-- User is redirected to login page
+- Session data is cleared  
+- User is redirected to the login page  
+
+---
 
 ### FR-04: Asset Creation (Admin Only)
 **As an** admin  
-**I want to** create new assets with name and category  
-**So that** the inventory can be populated
+**I want to** add new assets  
+**So that** the inventory can be maintained  
 
-- Admin provides asset name and category
-- System generates unique asset ID
-- Asset status defaults to 'available'
-- Asset is persisted to storage
+- Asset includes a name and category  
+- Each asset is uniquely identifiable  
+- Newly created assets are marked as **available** by default  
 
-### FR-05: Asset List View
+---
+
+### FR-05: Asset Listing
 **As a** logged-in user  
-**I want to** view all available and checked-out assets  
-**So that** I can see what assets exist in the system
+**I want to** view all assets  
+**So that** I know their availability  
 
-- User sees list of all assets
-- Each asset shows name, category, and current status
-- Users can click 'View' to see asset details
+- Asset list displays name, category, and current status  
+- Assets can be viewed regardless of availability  
 
-### FR-06: Asset Details View
+---
+
+### FR-06: Asset Details
 **As a** logged-in user  
-**I want to** view full details of a specific asset  
-**So that** I know its condition and current checkout status
+**I want to** view detailed information about an asset  
+**So that** I can decide whether to use it  
 
-- User can view asset name, ID, category, and status
-- If available, user can checkout the asset
-- If checked out by user, user can return it
-- Admin sees retire option if asset not retired
+- Displays asset ID, category, and status  
+- Available assets can be checked out  
+- Checked-out assets can be returned by the same user  
+- Admin users may retire assets  
+
+---
 
 ### FR-07: Asset Checkout
-**As a** employee  
+**As an** employee  
 **I want to** check out an available asset  
-**So that** I can use it for my work
+**So that** I can use it for work  
 
-- System verifies asset exists and is available
-- System prevents checkout if retired or already checked out
-- Checkout record is created with current timestamp
-- Asset status changes to 'checked_out'
-- Notification is sent (log or email)
+- Checkout is allowed only if asset is available  
+- Checkout is blocked for retired or unavailable assets  
+- Asset status updates to **checked_out**  
+- Checkout event is recorded  
+
+---
 
 ### FR-08: Asset Return
 **As an** employee  
-**I want to** return a checked-out asset  
-**So that** others can use it
+**I want to** return an asset I checked out  
+**So that** it becomes available again  
 
-- System verifies asset was checked out by current user
-- System prevents return if not checked out
-- Checkout record is marked as returned with timestamp
-- Asset status changes back to 'available'
-- Notification is sent
+- Only the original user may return the asset  
+- Asset status updates to **available**  
+- Return event is recorded  
 
-### FR-09: Asset Retirement
+---
+
+### FR-09: Asset Retirement (Admin Only)
 **As an** admin  
 **I want to** retire an asset  
-**So that** it can no longer be checked out
+**So that** it cannot be used again  
 
-- Admin navigates to asset page
-- Admin clicks 'Retire Asset' button
-- Asset status changes to 'retired'
-- Future checkout attempts are blocked
+- Retired assets cannot be checked out  
+- Retirement action is permanent  
 
-### FR-10: Global Checkout History
+---
+
+### FR-10: Checkout History Viewing
 **As a** logged-in user  
-**I want to** view the global checkout history across all assets  
-**So that** I can see all checkout and return events
+**I want to** view checkout history  
+**So that** asset usage is transparent  
 
-- User views history page
-- All checkout/return events are listed
-- Each entry shows asset ID, user, checkout date, return date (or "Not returned")
+- History can be viewed globally  
+- History can be filtered by specific asset  
+- Each record shows checkout and return timestamps  
 
-### FR-11: Per-Asset Checkout History
-**As a** logged-in user  
-**I want to** view checkout history for a specific asset  
-**So that** I can see how often it has been used
+---
 
-- User navigates to asset page
-- User clicks 'View full history'
-- Only checkout/return events for that asset are shown
-
-### FR-12: Checkout Notifications
+### FR-11: System Notifications
 **As a** system  
-**I want to** send notifications on checkout/return  
-**So that** operations are logged and can be verified
+**I want to** notify configured channels on checkout or return  
+**So that** operations can be monitored  
 
-- On checkout: notification sent with user, asset, timestamp
-- On return: notification sent with user, asset, timestamp
-- Notifications can use log file or email (swappable)
+- Notifications are triggered on checkout and return  
+- Notification mechanism is configurable  
 
 ---
 
 ## Part B: Non-Functional Requirements (FURPS+)
 
-### F — Functionality (Security & Compliance)
+> **Scope Note:**  
+> The following non-functional requirements apply within the scope of this mini internal tool and do not represent enterprise-scale guarantees.
+
+---
+
+### F — Functionality & Security
 
 **NFR-01: Authentication Security**
-- Passwords MUST be hashed using `password_hash(\, PASSWORD_BCRYPT)`
-- Passwords MUST be verified using `password_verify()`
-- Session regeneration MUST occur after successful login
-- No passwords stored in plain text
+- User credentials must be securely stored and verified  
+- Plain-text passwords must never be persisted  
 
-**NFR-02: Authorization (Role-Based Access)**
-- Only 'admin' users can create/retire assets or export data
-- Only 'employee' users can checkout/return assets
-- Unauthorized access attempts must return HTTP 403 error
-- View operations accessible to all authenticated users
+**NFR-02: Authorization**
+- Admin users manage assets  
+- Employee users checkout and return assets  
+- Unauthorized actions are blocked  
 
 **NFR-03: Data Protection**
-- All user-controlled output MUST be escaped with `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`
-- File writes MUST use `LOCK_EX` flag for concurrent access safety
-- Sensitive data (passwords, emails) must not appear in logs
+- User-controlled output must be safely rendered  
+- Sensitive data must not be exposed  
 
 ---
 
 ### U — Usability
 
-**NFR-04: Interface Responsiveness**
-- Asset list must render in 300ms for 100 assets
-- Asset detail page must load in 200ms
-- Checkout/return operations must complete in 100ms
-- All pages must be responsive on mobile and desktop
+**NFR-04: Responsiveness**
+- Asset list loads within **300ms** for up to **100 assets**  
+- Asset detail view loads within **200ms**  
 
 **NFR-05: User Feedback**
-- Every action (login, checkout, return) displays success or error message
-- Error messages are user-friendly, not technical
-- Form validation provides immediate feedback
-- Redirects used only for flow changes, not error reporting
-
-**NFR-06: Navigation & Clarity**
-- All pages include navigation back to asset list
-- Buttons and links are clearly labeled
-- Forms are simple and require minimal fields
-- Status indicators are color-coded (green=available, red=checked_out, gray=retired)
+- All actions provide clear success or error messages  
+- Messages are user-friendly and non-technical  
 
 ---
 
-### R — Reliability & Robustness
+### R — Reliability
 
-**NFR-07: Data Consistency**
-- CONSTRAINT: Only ONE user can hold a checkout for an asset at any time
-- Concurrent checkout attempts must be serialized (LOCK_EX)
-- If operation fails, no state change occurs
+**NFR-06: Data Consistency**
+- Only one active checkout per asset is allowed  
+- Partial failures must not corrupt system state  
 
-**NFR-08: Fault Handling**
-- Failed checkout shows specific reason: "Asset not available", "Already checked out", "Retired", etc.
-- Failed return shows reason: "Not checked out", "Not your checkout", etc.
-- Failed login shows generic message: "Invalid email or password" (No user enumeration)
-- All exceptions caught and user-friendly messages returned
-
-**NFR-09: Data Integrity**
-- Assets cannot be deleted (only retired)
-- Checkout history is immutable (append-only log)
-- User data is validated before persistence
+**NFR-07: Error Handling**
+- Errors provide meaningful reasons without revealing internals  
 
 ---
 
 ### P — Performance
 
-**NFR-10: Query/Retrieval Speed**
-- Asset list retrieval: 50ms for reasonable dataset
-- Asset detail retrieval: 50ms
-- Checkout history retrieval: 100ms
-- No N+1 query problems
-
-**NFR-11: Storage Efficiency**
-- JSON file format acceptable for current load
-- File size 10MB before migration to database needed
-- No redundant data storage
-
-**NFR-12: Scalability Path**
-- Repository interfaces allow swapping to MySQL/SQLite without code changes
-- Service layer independent of storage implementation
-- Horizontal scaling possible via stateless design (except sessions)
+**NFR-08: Retrieval Speed**
+- Checkout history loads within **100ms**  
 
 ---
 
-### S — Supportability & Maintainability
+### S — Supportability
 
-**NFR-13: Code Organization**
-- 5-layer architecture: Router  Controllers  Services  Entities  Repositories
-- No class exceeds 200 lines
-- No method exceeds 30 lines
-- Single Responsibility Principle applied strictly
-
-**NFR-14: Code Quality Standards**
-- `declare(strict_types=1)` on all files
-- Full type hints on all parameters and return types
-- Namespaces follow PSR-4 standard
-- Composer autoloading used exclusively
-- Zero commented-out code
-- Zero debug statements (console log, var_dump, die)
-
-**NFR-15: Extensibility**
-- New notification channels added by implementing `NotificationChannel` interface
-- New storage implementations added by implementing Repository interfaces
-- Configuration externalized for notification driver selection
-- Service layer depends on abstractions, not concrete classes
-
-**NFR-16: Testing & Verifiability**
-- All business logic in services is unit-testable
-- Repositories are mockable via interfaces
-- No static dependencies or singletons (except container in bootstrap)
-- Test suite covers: Entity behavior, Validation, Notifications, Container
-
-**NFR-17: Documentation**
-- README includes setup and running instructions
-- Inline code is self-documenting (clear naming)
-- Architecture documented in PROJECT_STRUCTURE.md
-- Design patterns explained in POLYMORPHISM.md
+**NFR-09: Maintainability**
+- Code follows single-responsibility principles  
+- System is modular and extensible  
 
 ---
 
-### + — Constraints (Design & Technical)
+### + Constraints
 
-**NFR-18: Technical Stack**
-- PHP 8.0+ required (for type hints, named arguments, enums)
-- No external frameworks allowed (Laravel, Symfony, etc. forbidden)
-- Composer for autoloading (PSR-4 required)
-- JSON files for storage (no database required)
-- Plain HTML for UI (no frontend framework required)
-
-**NFR-19: Code Submission Requirements**
-- No `die()` statements in final code
-- No `var_dump()`, `print_r()`, `debug_backtrace()` in final code
-- All files must pass PHP lint check
-- Git history with meaningful commits required
-- README with setup instructions required
-
-**NFR-20: Security & Deployment**
-- No credentials hardcoded in source
-- Passwords hashed before storage
-- Session-based auth (no JWT for this project)
-- HTTPS recommended for production
-- CSRF protection via session regeneration
+**NFR-10: Technical Constraints**
+- PHP 8+  
+- No external frameworks  
+- Composer autoloading required  
 
 ---
 
 ## Summary
 
-**Total Functional Requirements: 12**
-**Total Non-Functional Requirements: 20**
-**Total: 32 requirements**
+- **Functional Requirements:** 11  
+- **Non-Functional Requirements:** 10  
 
 All requirements are:
-✓ Measurable (specific metrics provided)
-✓ Testable (clear acceptance criteria)
-✓ Achievable (within scope of plain PHP)
-✓ Relevant (aligned with OOP assessment goals)
-✓ Time-bound (performance targets specified)
+- Clear  
+- Measurable  
+- Testable  
+- Aligned with assessment scope  

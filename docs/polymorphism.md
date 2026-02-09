@@ -113,16 +113,47 @@ public function returnAsset(string $assetId): void
 
 ## Configuration
 
-### In `public/index.php`
+### Configuration File: `config/app.php`
 
-To change notification channels:
+The notification channel is configured via a configuration file, allowing runtime swapping without changing service code:
 
 ```php
-// Use Log channel (default - for development)
-$notificationChannel = new LogNotificationChannel();
+return [
+    'notification_channel' => 'log',  // Options: 'log' or 'email'
+];
+```
 
-// OR use Email channel (for production)
-// $notificationChannel = new EmailNotificationChannel();
+### Factory Pattern: `NotificationChannelFactory`
+
+A factory class reads the configuration and creates the appropriate channel instance:
+
+```php
+namespace App\Notification;
+
+class NotificationChannelFactory
+{
+    public static function createFromConfig(): NotificationChannel
+    {
+        $config = require __DIR__ . '/../../config/app.php';
+        return match ($config['notification_channel']) {
+            'log' => new LogNotificationChannel(),
+            'email' => new EmailNotificationChannel(),
+            default => throw new Exception("Unknown channel type"),
+        };
+    }
+}
+```
+
+### Usage in `public/index.php`
+
+The factory is used to create the notification channel from configuration:
+
+```php
+use App\Notification\NotificationChannelFactory;
+
+// Create notification channel from configuration
+// To swap channels, edit config/app.php and change 'notification_channel' value
+$notificationChannel = NotificationChannelFactory::createFromConfig();
 
 $checkoutService = new CheckoutService(
     $assetRepo, 
@@ -131,6 +162,22 @@ $checkoutService = new CheckoutService(
     $notificationChannel
 );
 ```
+
+### Swapping Channels
+
+**To change notification channels, simply edit `config/app.php`:**
+
+1. **For Log Channel (Development):**
+   ```php
+   'notification_channel' => 'log',
+   ```
+
+2. **For Email Channel (Production):**
+   ```php
+   'notification_channel' => 'email',
+   ```
+
+**No service code changes required!** The factory handles the instantiation based on configuration.
 
 ---
 
@@ -177,13 +224,25 @@ class SmsNotificationChannel implements NotificationChannel
 }
 ```
 
-2. Use it in `public/index.php`:
+2. Add it to the factory's `create()` method:
 ```php
-$notificationChannel = new SmsNotificationChannel();
-$checkoutService = new CheckoutService($assetRepo, $checkoutRepo, $authService, $notificationChannel);
+public static function create(string $channelType): NotificationChannel
+{
+    return match (strtolower($channelType)) {
+        'log' => new LogNotificationChannel(),
+        'email' => new EmailNotificationChannel(),
+        'sms' => new SmsNotificationChannel(),  // Add new channel here
+        default => throw new Exception("Unknown notification channel type"),
+    };
+}
 ```
 
-**No other code changes needed!** This demonstrates the true power of polymorphism and the Open/Closed Principle.
+3. Update `config/app.php`:
+```php
+'notification_channel' => 'sms',
+```
+
+**No service code changes needed!** This demonstrates the true power of polymorphism and the Open/Closed Principle.
 
 ---
 
@@ -194,7 +253,8 @@ $checkoutService = new CheckoutService($assetRepo, $checkoutRepo, $authService, 
 | **Decoupling** | CheckoutService doesn't depend on specific notification implementations |
 | **Testability** | Easy to create mock channels for unit tests |
 | **Extensibility** | New channels can be added without modifying existing code |
-| **Flexibility** | Switch channels at runtime based on configuration or environment |
+| **Flexibility** | Switch channels at runtime via configuration file without code changes |
+| **Configuration-Driven** | Channel selection is externalized to config file, enabling easy environment-specific settings |
 | **SRP** | Each channel class has one responsibility: send notifications via its method |
 | **DRY** | Notification logic is centralized, avoids duplication |
 

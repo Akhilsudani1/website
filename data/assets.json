@@ -21,6 +21,12 @@
         "id": "a_698a07c70967a",
         "name": "Moniter",
         "category": "Electronic",
+        "status": "checked_out"
+    },
+    {
+        "id": "a_698a29a3af00c",
+        "name": "key",
+        "category": "a",
         "status": "available"
     }
 ]

@@ -24,6 +24,7 @@ return array(
     'App\\Notification\\EmailNotificationChannel' => $baseDir . '/src/Notification/EmailNotificationChannel.php',
     'App\\Notification\\LogNotificationChannel' => $baseDir . '/src/Notification/LogNotificationChannel.php',
     'App\\Notification\\NotificationChannel' => $baseDir . '/src/Notification/NotificationChannel.php',
+    'App\\Notification\\NotificationChannelFactory' => $baseDir . '/src/Notification/NotificationChannelFactory.php',
     'App\\Storage\\AssetRepositoryInterface' => $baseDir . '/src/Storage/AssetRepositoryInterface.php',
     'App\\Storage\\CheckoutRepositoryInterface' => $baseDir . '/src/Storage/CheckoutRepositoryInterface.php',
     'App\\Storage\\File\\FileAssetRepository' => $baseDir . '/src/Storage/File/FileAssetRepository.php',
