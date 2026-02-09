@@ -21,7 +21,6 @@ class ComposerStaticInite48edc07a978d7ac23b8188fa2accd83
     );
 
     public static $classMap = array (
-        'App\\Core\\Container' => __DIR__ . '/../..' . '/src/Core/Container.php',
         'App\\Domain\\DTO\\CheckoutAssetDTO' => __DIR__ . '/../..' . '/src/Domain/DTO/CheckoutAssetDTO.php',
         'App\\Domain\\DTO\\CreateAssetDTO' => __DIR__ . '/../..' . '/src/Domain/DTO/CreateAssetDTO.php',
         'App\\Domain\\Entity\\Asset' => __DIR__ . '/../..' . '/src/Domain/Entity/Asset.php',
@@ -36,12 +35,10 @@ class ComposerStaticInite48edc07a978d7ac23b8188fa2accd83
         'App\\Http\\Controller\\AssetController' => __DIR__ . '/../..' . '/src/Http/Controller/AssetController.php',
         'App\\Http\\Controller\\AuthController' => __DIR__ . '/../..' . '/src/Http/Controller/AuthController.php',
         'App\\Http\\Controller\\CheckoutController' => __DIR__ . '/../..' . '/src/Http/Controller/CheckoutController.php',
-        'App\\Http\\Middleware\\AuthGuard' => __DIR__ . '/../..' . '/src/Http/Middleware/AuthGuard.php',
         'App\\Http\\Router' => __DIR__ . '/../..' . '/src/Http/Router.php',
         'App\\Notification\\EmailNotificationChannel' => __DIR__ . '/../..' . '/src/Notification/EmailNotificationChannel.php',
         'App\\Notification\\LogNotificationChannel' => __DIR__ . '/../..' . '/src/Notification/LogNotificationChannel.php',
         'App\\Notification\\NotificationChannel' => __DIR__ . '/../..' . '/src/Notification/NotificationChannel.php',
-        'App\\Notification\\NotificationManager' => __DIR__ . '/../..' . '/src/Notification/NotificationManager.php',
         'App\\Storage\\AssetRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/AssetRepositoryInterface.php',
         'App\\Storage\\CheckoutRepositoryInterface' => __DIR__ . '/../..' . '/src/Storage/CheckoutRepositoryInterface.php',
         'App\\Storage\\File\\FileAssetRepository' => __DIR__ . '/../..' . '/src/Storage/File/FileAssetRepository.php',
