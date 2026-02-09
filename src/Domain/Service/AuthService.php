@@ -58,28 +58,24 @@ class AuthService
 
     public function register(string $email, string $password): bool
     {
-        // Check if user already exists
         if ($this->users->findByEmail($email)) {
             throw new \InvalidArgumentException('Email already registered');
         }
 
-        // Validate email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('Invalid email format');
         }
 
-        // Validate password length
         if (strlen($password) < 6) {
             throw new \InvalidArgumentException('Password must be at least 6 characters');
         }
 
-        // Hash password and create user
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $user = new \App\Domain\Entity\User(
             uniqid('u_'),
             $email,
             $hashedPassword,
-            'employee' // New users are employees by default
+            'employee'
         );
 
         $this->users->save($user);

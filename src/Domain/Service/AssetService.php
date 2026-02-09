@@ -16,7 +16,6 @@ class AssetService
 
     public function create(CreateAssetDTO $dto): void
     {
-        // admin-only
         $this->auth->requireAdmin();
 
         $asset = new Asset(

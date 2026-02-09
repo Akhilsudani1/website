@@ -1,26 +1,26 @@
 [
     {
-        "id": "a_6988cf2bbfaaf",
+        "id": "a_698a07b96142e",
         "name": "Keybord",
-        "category": "electronic",
+        "category": "Electronic",
         "status": "available"
     },
     {
-        "id": "a_6988cf4510620",
+        "id": "a_698a07be6bf5f",
         "name": "Mouse",
         "category": "Electronic",
-        "status": "retired"
+        "status": "available"
     },
     {
-        "id": "a_6988cf562d6e6",
+        "id": "a_698a07c2dbbc2",
         "name": "Laptop",
         "category": "Electronic",
         "status": "available"
     },
     {
-        "id": "a_6988cf7a00ea4",
+        "id": "a_698a07c70967a",
         "name": "Moniter",
         "category": "Electronic",
-        "status": "checked_out"
+        "status": "available"
     }
 ]

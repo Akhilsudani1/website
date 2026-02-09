@@ -52,7 +52,6 @@ class CheckoutService
             new Checkout(uniqid('chk_'), $dto->assetId, $userId, date('Y-m-d H:i:s'))
         );
 
-        // Send notification
         $message = "Checkout confirmed: User {$userEmail} checked out asset {$asset->getName()} (ID: {$asset->getId()})";
         $this->notificationChannel->send($message);
     }
@@ -77,7 +76,6 @@ class CheckoutService
 
         $this->checkoutRepo->markReturned($checkout->getId());
 
-        // Send notification
         $message = "Asset returned: User {$userEmail} returned asset {$asset->getName()} (ID: {$asset->getId()})";
         $this->notificationChannel->send($message);
     }

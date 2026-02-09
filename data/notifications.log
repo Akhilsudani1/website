@@ -13,3 +13,5 @@
 [2026-02-09 16:01:10] Asset returned: User admin@test.com returned asset Laptop (ID: a_6988cf562d6e6)
 [2026-02-09 16:01:56] Checkout confirmed: User raj@test.com checked out asset Laptop (ID: a_6988cf562d6e6)
 [2026-02-09 16:02:00] Asset returned: User raj@test.com returned asset Laptop (ID: a_6988cf562d6e6)
+[2026-02-09 16:14:10] Checkout confirmed: User admin@test.com checked out asset Keybord (ID: a_698a07b96142e)
+[2026-02-09 16:14:18] Asset returned: User admin@test.com returned asset Keybord (ID: a_698a07b96142e)

@@ -131,5 +131,12 @@
         "userId": "u_698a04ead1c6e",
         "checkoutDate": "2026-02-09 16:01:56",
         "returnDate": "2026-02-09 16:02:00"
+    },
+    {
+        "id": "chk_698a07d264ad4",
+        "assetId": "a_698a07b96142e",
+        "userId": "u1",
+        "checkoutDate": "2026-02-09 16:14:10",
+        "returnDate": "2026-02-09 16:14:18"
     }
 ]

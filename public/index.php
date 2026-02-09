@@ -17,9 +17,6 @@ $authService = new AuthService(
 $assetRepo = new FileAssetRepository(__DIR__ . '/../data/assets.json');
 $checkoutRepo = new FileCheckoutRepository(__DIR__ . '/../data/checkouts.json');
 
-// Use LogNotificationChannel by default. 
-// To use EmailNotificationChannel, change it here:
-// $notificationChannel = new EmailNotificationChannel();
 $notificationChannel = new LogNotificationChannel();
 
 $checkoutService = new CheckoutService($assetRepo, $checkoutRepo, $authService, $notificationChannel);
@@ -35,10 +32,8 @@ $checkoutController = new CheckoutController(
 
 $authController = new AuthController($authService);
 
-// Create router
 $router = new Router();
 
-// Auth routes
 $router->get('/login', function () use ($authController) {
     $authController->loginForm();
 });
@@ -59,7 +54,6 @@ $router->get('/logout', function () use ($authController) {
     $authController->logout();
 });
 
-// Asset routes
 $router->get('/', function () use ($authService, $assetController) {
     $authService->requireLogin();
     $assetController->index();
@@ -77,7 +71,6 @@ $router->patch('/asset/retire', function () use ($assetController) {
     $assetController->retire();
 });
 
-// Checkout routes
 $router->post('/checkout', function () use ($checkoutController) {
     $checkoutController->checkout();
 });
@@ -94,6 +87,5 @@ $router->get('/asset-history', function () use ($checkoutController) {
     $checkoutController->assetHistory();
 });
 
-// Dispatch request
 $router->dispatch();
 ?>

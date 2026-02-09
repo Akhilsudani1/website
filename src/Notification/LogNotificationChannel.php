@@ -16,7 +16,6 @@ class LogNotificationChannel implements NotificationChannel
     {
         $timestamp = date('Y-m-d H:i:s');
         $logEntry = "[{$timestamp}] {$message}\n";
-        
         file_put_contents($this->logFile, $logEntry, FILE_APPEND);
     }
 }

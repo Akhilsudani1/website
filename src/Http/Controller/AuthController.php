@@ -56,8 +56,7 @@ class AuthController
             }
 
             $this->service->register($email, $password);
-            
-            // Auto-login after registration
+
             if ($this->service->login($email, $password)) {
                 header('Location: /');
                 exit;
